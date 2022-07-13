@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ELearning.Views.ListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ELearning.Models"
+    xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:vm="clr-namespace:ELearning.ViewModels"
+    xmlns:xct="http://prismlibrary.com"
+    x:DataType="vm:ListPageViewModel"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="StartAndExpand"
+                Text="Danh sách nhân viên"
+                TextColor="#ffffff" />
+            <Label
+                Margin="0,0,15,0"
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="EndAndExpand"
+                Text="THÊM"
+                TextColor="#ffffff">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#f2f2f7" Spacing="0">
+            <sfPopup:SfPopupLayout IsOpen="{Binding PopupOpen}">
+                <sfPopup:SfPopupLayout.PopupView>
+                    <sfPopup:PopupView
+                        AcceptButtonText="Xác nhận"
+                        AcceptCommand="{Binding PopupAcceptCommand}"
+                        AnimationMode="Zoom"
+                        AppearanceMode="TwoButton"
+                        DeclineButtonText="Bỏ qua"
+                        DeclineCommand="{Binding PopupDeclineCommand}"
+                        FooterHeight="50"
+                        HeaderHeight="50"
+                        HeaderTitle="Xác nhận xóa!"
+                        HeightRequest="200">
+                        <sfPopup:PopupView.PopupStyle>
+                            <sfPopup:PopupStyle
+                                AcceptButtonTextColor="#333333"
+                                BorderColor="#E2E2E2"
+                                DeclineButtonTextColor="#333333"
+                                HeaderBackgroundColor="#3f48cc"
+                                HeaderFontAttribute="Bold"
+                                HeaderFontSize="16"
+                                HeaderTextAlignment="Start"
+                                HeaderTextColor="White" />
+                        </sfPopup:PopupView.PopupStyle>
+                        <sfPopup:PopupView.ContentTemplate>
+                            <DataTemplate>
+                                <Label
+                                    Padding="10"
+                                    BackgroundColor="#ffffff"
+                                    FontSize="14"
+                                    HorizontalTextAlignment="Start"
+                                    Text="Bạn có chắc chắn muốn xóa nhân viên này?"
+                                    TextColor="#333333" />
+                            </DataTemplate>
+                        </sfPopup:PopupView.ContentTemplate>
+                    </sfPopup:PopupView>
+                </sfPopup:SfPopupLayout.PopupView>
+            </sfPopup:SfPopupLayout>
+            <StackLayout BackgroundColor="#ffffff">
+                <inputLayout:SfTextInputLayout
+                    Margin="10,0"
+                    ContainerType="Outlined"
+                    FocusedColor="#0066BD"
+                    Hint="Tìm kiếm"
+                    HorizontalOptions="Center"
+                    InputViewPadding="10,5,5,5"
+                    LeadingViewPosition="Inside"
+                    OutlineCornerRadius="20"
+                    UnfocusedColor="#8E8E93"
+                    VerticalOptions="Center">
+                    <Entry
+                        x:Name="searchBar"
+                        FontSize="14"
+                        TextColor="#333333">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior
+                                Command="{Binding SearchCommand}"
+                                CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                                EventName="TextChanged" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <!--<inputLayout:SfTextInputLayout.TrailingView>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image
+                            BackgroundColor="#0066BD"
+                            HeightRequest="25"
+                            Source="search"
+                            WidthRequest="25"/>
+                        </StackLayout>
+                    </inputLayout:SfTextInputLayout.TrailingView>-->
+                </inputLayout:SfTextInputLayout>
+
+            </StackLayout>
+            <Label
+                Margin="10,0"
+                IsVisible="{Binding HasError}"
+                Text="{Binding ErrorText}"
+                TextColor="#DA0000" />
+            <syncfusion:SfListView
+                x:Name="listView"
+                AllowSwiping="True"
+                AutoFitMode="DynamicHeight"
+                ItemSpacing="2"
+                ItemsSource="{Binding Staffs}">
+                <syncfusion:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:DataType="models:StaffModel">
+                        <StackLayout Spacing="0">
+                            <BoxView
+                                BackgroundColor="#000000"
+                                HeightRequest="1"
+                                Opacity="0.1" />
+                            <Grid VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" BackgroundColor="#F2F2F7">
+                                    <StackLayout Spacing="0" VerticalOptions="Center">
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="25"
+                                            Source="IconEdit.png"
+                                            WidthRequest="25" />
+                                        <Label
+                                            FontSize="12"
+                                            HorizontalOptions="Center"
+                                            Text="Sửa"
+                                            TextColor="#0066BD" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}" CommandParameter="{Binding PK_Id}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid Grid.Column="1" BackgroundColor="#F2F2F7">
+                                    <StackLayout Spacing="0" VerticalOptions="Center">
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="25"
+                                            Source="IconDelete.png"
+                                            WidthRequest="25" />
+                                        <Label
+                                            FontSize="12"
+                                            HorizontalOptions="Center"
+                                            Text="Xoá"
+                                            TextColor="#DA0000" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding PK_Id}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                            <BoxView
+                                BackgroundColor="#000000"
+                                HeightRequest="1"
+                                Opacity="0.1" />
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.RightSwipeTemplate>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:StaffModel">
+                        <StackLayout Spacing="0">
+                            <BoxView
+                                BackgroundColor="#000000"
+                                HeightRequest="1"
+                                Opacity="0.1" />
+                            <Grid
+                                Padding="10,5"
+                                BackgroundColor="White"
+                                RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="0.7*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <sfavatar:SfAvatarView
+                                    Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"
+                                    BorderColor="#0066BD"
+                                    BorderThickness="2"
+                                    ContentType="Custom"
+                                    CornerRadius="25"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Center"
+                                    ImageSource="{Binding Avatar}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    Text="{Binding Name}"
+                                    TextColor="#333333">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding PK_Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="12"
+                                    Text="{Binding PartName}"
+                                    TextColor="#333333">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding PK_Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="12"
+                                    Text="{Binding Email}"
+                                    TextColor="#333333">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding PK_Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    FontSize="12"
+                                    Text="{Binding CreatedDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                    TextColor="#333333">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference listView}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding PK_Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <BoxView
+                                BackgroundColor="#000000"
+                                HeightRequest="1"
+                                Opacity="0.1" />
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

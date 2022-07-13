@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ELearning.Views.AddEditPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:vm="clr-namespace:ELearning.ViewModels"
+    x:DataType="vm:AddEditPageViewModel"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="StartAndExpand"
+                Text="{Binding Title}"
+                TextColor="#ffffff" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Spacing="4">
+            <Entry IsVisible="false" Text="{Binding PK_Id}" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Tên nhân viên"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        Placeholder="Nhập tên nhân viên"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="1"
+                        Text="{Binding Name}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Địa chỉ"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        Placeholder="Nhập địa chỉ"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="2"
+                        Text="{Binding Address}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Số điện thoại"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        Placeholder="Nhập số điện thoại"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="3"
+                        Text="{Binding Tel}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Email"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        x:Name="Email"
+                        FontSize="14"
+                        Placeholder="Nhập email"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="4"
+                        Text="{Binding Email}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Phòng ban"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxParts"
+                        DataSource="{Binding Parts}"
+                        DisplayMemberPath="Name"
+                        HeightRequest="45"
+                        SelectedItem="{Binding FK_PartId}"
+                        TextSize="14"
+                        Watermark="Chọn phòng ban"
+                        WatermarkColor="#CCCCCC" />
+                </Grid>
+
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Giới tính"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxGenders"
+                        DataSource="{Binding Genders}"
+                        DisplayMemberPath="Name"
+                        HeightRequest="45"
+                        SelectedItem="{Binding Gender}"
+                        TextSize="14"
+                        Watermark="Chọn giới tính"
+                        WatermarkColor="#CCCCCC" />
+                </Grid>
+
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Link ảnh"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        x:Name="Avatar"
+                        FontSize="14"
+                        Placeholder="Nhập link ảnh"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="4"
+                        Text="{Binding Avatar}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Label
+                Margin="10,0"
+                IsVisible="{Binding HasError}"
+                Text="{Binding ErrorText}"
+                TextColor="#DA0000" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid Padding="30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <syncfusion:SfButton
+                        Margin="0,20,0,0"
+                        Padding="0,10"
+                        BackgroundColor="#D9D9D9"
+                        Command="{Binding CancelCommand}"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        Text="Bỏ qua"
+                        TextColor="#000000" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <syncfusion:SfButton
+                        Margin="0,20,0,0"
+                        Padding="0,10"
+                        Command="{Binding SaveCommand}"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        Text="Lưu"
+                        TextColor="#ffffff">
+                        <!--<syncfusion:SfButton.BackgroundGradient>
+                            <gradient:SfLinearGradientBrush>
+                                <gradient:SfLinearGradientBrush.GradientStops>
+                                    <gradient:SfGradientStop Offset="0" Color="#407dcd" />
+                                    <gradient:SfGradientStop Offset="1" Color="#3f48cc" />
+                                </gradient:SfLinearGradientBrush.GradientStops>
+                            </gradient:SfLinearGradientBrush>
+                        </syncfusion:SfButton.BackgroundGradient>-->
+                    </syncfusion:SfButton>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,117 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj": {}
+  },
+  "projects": {
+    "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj",
+        "projectName": "ELearning",
+        "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj",
+        "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
+        "outputPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Prism.DryIoc.Forms": {
+              "target": "Package",
+              "version": "[8.1.97, )"
+            },
+            "Syncfusion.Xamarin.Buttons": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "Syncfusion.Xamarin.SfAutoComplete": {
+              "target": "Package",
+              "version": "[20.2.0.36, )"
+            },
+            "Syncfusion.Xamarin.SfComboBox": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "Syncfusion.Xamarin.SfListView": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "Syncfusion.Xamarin.SfPicker": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "Syncfusion.Xamarin.SfPopupLayout": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "Syncfusion.Xamarin.SfTabView": {
+              "target": "Package",
+              "version": "[20.1.0.61, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Xamarin.Essentials.Interfaces": {
+              "target": "Package",
+              "version": "[1.7.3.2, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[5.0.0.2478, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

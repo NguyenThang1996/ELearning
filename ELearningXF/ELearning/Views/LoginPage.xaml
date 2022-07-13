@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ELearning.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:vm="clr-namespace:ELearning.ViewModels"
+    x:DataType="vm:LoginPageViewModel"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#fff"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="Start">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="400"
+                Source="login_bg" />
+            <StackLayout Padding="30,0" Spacing="0">
+                <inputLayout:SfTextInputLayout
+                    ContainerType="None"
+                    HeightRequest="70"
+                    Hint="Tên đăng nhập"
+                    LeadingViewPosition="Inside">
+                    <Entry
+                        TabIndex="1"
+                        Text="{Binding Username}"
+                        TextColor="#333333" />
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <StackLayout Padding="10">
+                            <Image Source="fi_rr_user" />
+                        </StackLayout>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout
+                    ContainerType="None"
+                    EnablePasswordVisibilityToggle="True"
+                    HeightRequest="70"
+                    Hint="Mật khẩu"
+                    LeadingViewPosition="Inside">
+                    <Entry
+                        IsPassword="True"
+                        ReturnCommand="{Binding LoginCommand}"
+                        TabIndex="2"
+                        Text="{Binding Password}"
+                        TextColor="#333333" />
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <StackLayout Padding="10">
+                            <Image Source="log" />
+                        </StackLayout>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+                <Label
+                    Margin="10,0"
+                    IsVisible="{Binding HasError}"
+                    Text="{Binding ErrorText}"
+                    TextColor="#DA0000" />
+                <StackLayout
+                    Margin="0,10,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <syncfusion:SfCheckBox
+                        CheckedColor="#333333"
+                        FontSize="12"
+                        HorizontalOptions="StartAndExpand"
+                        IsChecked="{Binding Remember}"
+                        Text="Tự động đăng nhập"
+                        TextColor="#333333" />
+                    <Label
+                        Margin="0,10"
+                        FontSize="12"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Quên mật khẩu?"
+                        TextColor="#323232"
+                        TextDecorations="Underline" />
+                </StackLayout>
+                <syncfusion:SfButton
+                    Margin="0,20,0,0"
+                    Padding="0,10"
+                    Command="{Binding LoginCommand}"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="ĐĂNG NHẬP"
+                    TextColor="#ffffff">
+                    <!--<syncfusion:SfButton.BackgroundGradient>
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Offset="0" Color="#407dcd" />
+                                <gradient:SfGradientStop Offset="1" Color="#3f48cc" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
+                    </syncfusion:SfButton.BackgroundGradient>-->
+                </syncfusion:SfButton>
+            </StackLayout>
+            <Label
+                Margin="0,40,0,20"
+                FontSize="12"
+                HorizontalOptions="Center"
+                Text="Version 1.0.0"
+                TextColor="#333333"
+                VerticalOptions="End" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ELearning.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    xmlns:vm="clr-namespace:ELearning.ViewModels"
+    x:DataType="vm:ProfilePageViewModel">
+    <NavigationPage.TitleView>
+        <Grid
+            Padding="10,5"
+            BackgroundColor="White"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="0.7*" />
+                <ColumnDefinition Width="0.3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <sfavatar:SfAvatarView
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                BorderColor="#0066BD"
+                BorderThickness="2"
+                ContentType="Custom"
+                CornerRadius="21"
+                HeightRequest="42"
+                HorizontalOptions="Center"
+                ImageSource="girl"
+                VerticalOptions="Center"
+                WidthRequest="42" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="14"
+                Text="Nguyễn Huy Thắng"
+                TextColor="#ffffff" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="12"
+                Text="0976895423"
+                TextColor="#ffffff" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Thông tin học viên"></Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="People" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Đổi mật khẩu"></Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="password" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Đánh giá"></Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="vote" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Cài đặt"></Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="setting" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Phiên bản"></Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="version" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout
+                ContainerType="None"
+                LeadingViewPosition="Inside">
+                <Label FontSize="14" TextColor="#333956" Text="Đăng xuất">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <StackLayout Padding="10">
+                        <Image Source="logout" />
+                    </StackLayout>
+                </inputLayout:SfTextInputLayout.LeadingView>
+            </inputLayout:SfTextInputLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

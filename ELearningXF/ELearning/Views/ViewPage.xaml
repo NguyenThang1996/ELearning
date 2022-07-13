@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ELearning.Views.ViewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:vm="clr-namespace:ELearning.ViewModels"
+    x:DataType="vm:ViewPageViewModel"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="StartAndExpand"
+                Text="{Binding Title}"
+                TextColor="#ffffff" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#ffffff" Spacing="4">
+            <Entry IsVisible="false" Text="{Binding PK_Id}" />
+            <sfavatar:SfAvatarView
+                Margin="10"
+                BorderColor="#0066BD"
+                BorderThickness="2"
+                ContentType="Custom"
+                CornerRadius="75"
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                ImageSource="{Binding Avatar}"
+                VerticalOptions="Center"
+                WidthRequest="150" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Tên nhân viên"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        IsReadOnly="true"
+                        Placeholder="Nhập tên nhân viên"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="1"
+                        Text="{Binding Name}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Địa chỉ"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        IsReadOnly="true"
+                        Placeholder="Nhập địa chỉ"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="2"
+                        Text="{Binding Address}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Số điện thoại"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        FontSize="14"
+                        IsReadOnly="true"
+                        Placeholder="Nhập số điện thoại"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="3"
+                        Text="{Binding Tel}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Email"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Entry
+                        x:Name="Email"
+                        FontSize="14"
+                        IsReadOnly="true"
+                        Placeholder="Nhập email"
+                        PlaceholderColor="#CCCCCC"
+                        TabIndex="4"
+                        Text="{Binding Email}"
+                        TextColor="#333333" />
+                </Grid>
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Phòng ban"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxParts"
+                        DataSource="{Binding Parts}"
+                        DisplayMemberPath="Name"
+                        HeightRequest="45"
+                        IsEnabled="true"
+                        SelectedItem="{Binding FK_PartId}"
+                        TextSize="14"
+                        Watermark="Chọn phòng ban"
+                        WatermarkColor="#CCCCCC" />
+                </Grid>
+
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+            <Grid
+                Padding="10,5"
+                BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label
+                        Padding="0,10"
+                        FontSize="14"
+                        Text="Giới tính"
+                        TextColor="#353535" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxGenders"
+                        DataSource="{Binding Genders}"
+                        DisplayMemberPath="Name"
+                        HeightRequest="45"
+                        IsEnabled="true"
+                        SelectedItem="{Binding Gender}"
+                        TextSize="14"
+                        Watermark="Chọn giới tính"
+                        WatermarkColor="#CCCCCC" />
+                </Grid>
+
+            </Grid>
+            <BoxView
+                BackgroundColor="#000000"
+                HeightRequest="1"
+                Opacity="0.1" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
