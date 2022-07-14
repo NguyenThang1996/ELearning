@@ -13,10 +13,25 @@ using ELearning.Helpers;
 
 namespace ELearning.ViewModels
 {
+    /// <summary>
+    ///     ViewPageViewModel
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class ViewPageViewModel : BaseViewModel
     {
         #region Khai báo các service sử dụng và constructor
         private readonly IStaffService _staffService;
+
+        /// <summary>Khởi tạo constructor của ViewPageViewModel</summary>
+        /// <param name="navigationService">The navigation service.</param>
+        /// <param name="staffService">The staff service.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public ViewPageViewModel(INavigationService navigationService, IStaffService staffService)
          : base(navigationService)
         {
@@ -24,12 +39,34 @@ namespace ELearning.ViewModels
 
         }
         #endregion
+
         #region Khởi tạo page, nhận các parameter từ trang trước truyền sang
+        /// <summary>Khởi tạo page</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void Initialize(INavigationParameters parameters)
         {
             GetAllParts();
             GetAllGenders();
         }
+
+        /// <summary>Nhận các parameter từ trang trước truyền sang</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             PK_Id = parameters.GetValue<int>("PK_Id");
@@ -43,6 +80,7 @@ namespace ELearning.ViewModels
             Gender = new GenderModel { Id = parameters.GetValue<byte>("Gender"), Name = parameters.GetValue<string>("GenderName") };
         }
         #endregion
+
         #region Khai báo các biến dùng cơ chế binding dữ liệu 2 chiều
         private bool _hasError;
         public bool HasError { get => _hasError; set => SetProperty(ref _hasError, value); }
@@ -71,7 +109,11 @@ namespace ELearning.ViewModels
         #endregion
 
         #region Khai báo các hàm sử dụng
-        // Hàm get all phòng ban
+        /// <summary>Hàm get all phòng ban</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void GetAllParts()
         {
             try
@@ -105,7 +147,12 @@ namespace ELearning.ViewModels
             }
            
         }
-        // Hàm get all giới tính
+
+        /// <summary>Hàm get all giới tính</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private void GetAllGenders()
         {
             try

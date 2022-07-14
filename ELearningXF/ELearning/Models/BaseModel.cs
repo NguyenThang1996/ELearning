@@ -4,7 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ELearning.Models
-{ 
+{
+    /// <summary>
+    ///     BaseModel
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class BaseModel
     {
         [JsonProperty("pK_Id")]

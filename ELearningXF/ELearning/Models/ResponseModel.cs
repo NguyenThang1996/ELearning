@@ -5,6 +5,14 @@ using System.Text;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    ///     ResponseModel
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class ResponseModel<T>
     {
         [JsonProperty("message")]

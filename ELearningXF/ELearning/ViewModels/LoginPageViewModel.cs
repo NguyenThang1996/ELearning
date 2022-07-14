@@ -15,17 +15,43 @@ using Xamarin.Essentials;
 
 namespace ELearning.ViewModels
 {
+    /// <summary>
+    ///     LoginPageViewModel
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class LoginPageViewModel : BaseViewModel
     {
         #region Khai báo các service sử dụng và constructor
         private readonly ILoginService _loginService;
+
+        /// <summary>Khởi tạo constructor của LoginPageViewModel</summary>
+        /// <param name="navigationService">The navigation service.</param>
+        /// <param name="loginService">The login service.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public LoginPageViewModel(INavigationService navigationService, ILoginService loginService)
     : base(navigationService)
         {
             _loginService = loginService;
         }
         #endregion
+
         #region Khởi tạo page, get thông tin từ SecureStorage ra
+        /// <summary>Khởi tạo page, get thông tin từ SecureStorage ra</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override async void Initialize(INavigationParameters parameters)
         {
             try
@@ -41,14 +67,8 @@ namespace ELearning.ViewModels
             }
 
         }
-        //public override void OnNavigatedTo(INavigationParameters parameters)
-        //{
-        //    if (Remember)
-        //    {
-        //        Login();
-        //    }
-        //}
         #endregion
+
         #region Khai báo các biến dùng cơ chế binding dữ liệu 2 chiều
         private string _username;
         public string Username { get => _username; set => SetProperty(ref _username, value); }
@@ -65,12 +85,18 @@ namespace ELearning.ViewModels
         private string _errorText;
         public string ErrorText { get => _errorText; set => SetProperty(ref _errorText, value); }
         #endregion
+
         #region Khai báo các command
         // Command check login
         public DelegateCommand LoginCommand => new DelegateCommand(Login);
         #endregion Khai báo các command
+
         #region Define các hàm sử dụng
-        // Hàm check login
+        /// <summary>Hàm check login</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void Login()
         {
             try

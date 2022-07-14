@@ -9,15 +9,34 @@ using Xamarin.Forms;
 
 namespace ELearning
 {
+    /// <summary>
+    ///     App
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public partial class App
     {
         #region Khai báo các service sử dụng và constructor
+        /// <summary>Khởi tạo constructor của App</summary>
+        /// <param name="initializer">The initializer.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
         }
         #endregion
+
         #region Khởi tạo start page là LoginPage
+        /// <summary>Khởi tạo startpage là LoginPage</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         protected override async void OnInitialized()
         {
             InitializeComponent();
@@ -25,7 +44,14 @@ namespace ELearning
             await NavigationService.NavigateAsync("LoginPage");
         }
         #endregion
+
         #region Đăng ký các service vào DIContainer
+        /// <summary>Đăng ký các service vào DIContainer</summary>
+        /// <param name="containerRegistry"></param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();

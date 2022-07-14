@@ -10,24 +10,91 @@ using System.Threading.Tasks;
 namespace ELearning.Services
 {
     #region Khai báo interface các service sử dụng
+    /// <summary>
+    ///     IHttpService
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public interface IHttpService
     {
-        // IService GetAsync
+        /// <summary>IService GetAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TRequest">The type of the request.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<TResponse> GetAsync<TResponse, TRequest>(string url, TRequest request);
-        // IService PostAsync
+
+        /// <summary>IService PostAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TBody">The type of the body.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="content">The content.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<TResponse> PostAsync<TResponse, TBody>(string url, TBody content);
-        // IService PutAsync
+
+        /// <summary>IService PostAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TBody">The type of the body.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="content">The content.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<TResponse> PutAsync<TResponse, TBody>(string url, TBody content);
-        // IService DeleteAsync
+
+        /// <summary>IService DeleteAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TRequest">The type of the request.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<TResponse> DeleteAsync<TResponse, TRequest>(string url, TRequest request);
     }
     #endregion
+
     #region Define các service sử dụng, implement interface
+    /// <summary>
+    ///     HttpService
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class HttpService : IHttpService
     {
         #region Khai báo HttpClient và constructor
         private readonly HttpClient httpClient;
 
+        /// <summary>Khởi tạo constructor của HttpService</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public HttpService()
         {
             httpClient = new HttpClient
@@ -36,8 +103,20 @@ namespace ELearning.Services
             };
         }
         #endregion
+
         #region Define các service sử dụng
-        // Service GetAsync
+        /// <summary>Service GetAsync.</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TRequest">The type of the request.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<TResponse> GetAsync<TResponse, TRequest>(string url, TRequest request)
         {
             try
@@ -56,7 +135,19 @@ namespace ELearning.Services
                 return default;
             }
         }
-        // Service PostAsync
+
+        /// <summary>Service PostAsync.</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TBody">The type of the body.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="content">The content.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<TResponse> PostAsync<TResponse, TBody>(string url, TBody content)
         {
             try
@@ -71,7 +162,19 @@ namespace ELearning.Services
                 return default;
             }
         }
-        // Service PutAsync
+
+        /// <summary>Service PutAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TBody">The type of the body.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="content">The content.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<TResponse> PutAsync<TResponse, TBody>(string url, TBody content)
         {
             try
@@ -86,7 +189,19 @@ namespace ELearning.Services
                 return default;
             }
         }
-        // Service DeleteAsync
+
+        /// <summary>Service DeleteAsync</summary>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <typeparam name="TRequest">The type of the request.</typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<TResponse> DeleteAsync<TResponse, TRequest>(string url, TRequest request)
         {
             try

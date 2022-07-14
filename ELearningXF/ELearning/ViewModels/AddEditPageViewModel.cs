@@ -13,9 +13,24 @@ using ELearning.Helpers;
 
 namespace ELearning.ViewModels
 {
+    /// <summary>
+    ///     AddEditPageViewModel
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class AddEditPageViewModel : BaseViewModel {
         #region Khai báo các service sử dụng và constructor
         private readonly IStaffService _staffService;
+
+        /// <summary>Khởi tạo constructor của AddEditPageViewModel</summary>
+        /// <param name="navigationService">The navigation service.</param>
+        /// <param name="staffService">The staff service.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public AddEditPageViewModel(INavigationService navigationService, IStaffService staffService)
            : base(navigationService)
         {
@@ -23,12 +38,26 @@ namespace ELearning.ViewModels
 
         }
         #endregion
+
         #region Khởi tạo page, nhận các parameter từ trang trước truyền sang
+        /// <summary>Khởi tạo page</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void Initialize(INavigationParameters parameters)
         {
             GetAllParts();
             GetAllGenders();
         }
+
+        /// <summary>Nhận các parameter từ trang trước truyền sang</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             PK_Id = parameters.GetValue<int>("PK_Id");
@@ -43,6 +72,7 @@ namespace ELearning.ViewModels
             Gender = new GenderModel { Id = parameters.GetValue<byte>("Gender"), Name = parameters.GetValue<string>("GenderName") };
         }
         #endregion
+
         #region Khai báo các biến dùng cơ chế binding dữ liệu 2 chiều
         private bool _hasError;
         public bool HasError { get => _hasError; set => SetProperty(ref _hasError, value); }
@@ -71,14 +101,21 @@ namespace ELearning.ViewModels
         private List<GenderModel> _genders;
         public List<GenderModel> Genders { get => _genders; set => SetProperty(ref _genders, value); }
         #endregion
+
         #region Khai báo các command
         // Command lưu thông tin nhân viên
         public DelegateCommand SaveCommand => new DelegateCommand(Save);
+
         // Command hủy lưu thông tin nhân viên, navigate về trang list nhân viên
         public DelegateCommand CancelCommand => new DelegateCommand(Cancel);
         #endregion
+
         #region Define các hàm sử dụng
-        // Hàm lưu thông tin nhân viên
+        /// <summary>Hàm lưu thông tin nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void Save()
         {
             try
@@ -221,7 +258,12 @@ namespace ELearning.ViewModels
             }
 
         }
-        // Hàm get all phòng ban
+
+        /// <summary>Hàm get all phòng ban</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void GetAllParts()
         {
             try
@@ -255,7 +297,12 @@ namespace ELearning.ViewModels
             }
 
         }
-        // Hàm get all giới tính
+
+        /// <summary>Hàm get all giới tính</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private void GetAllGenders()
         {
             try
@@ -273,7 +320,12 @@ namespace ELearning.ViewModels
             }
 
         }
-        // Hàm hủy lưu thông tin nhân viên, navigate về trang list nhân viên
+
+        /// <summary>Hàm hủy lưu thông tin nhân viên, navigate về trang list nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void Cancel()
         {
             try

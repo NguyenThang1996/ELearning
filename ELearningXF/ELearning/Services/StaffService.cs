@@ -7,35 +7,119 @@ using System.Threading.Tasks;
 namespace ELearning.Services
 {
     #region Khai báo interface các service sử dụng
+    /// <summary>
+    ///     IStaffService
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public interface IStaffService
     {
-        // IService get all nhân viên
+        /// <summary>IService get all nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<List<StaffModel>>> GetAll(SearchModel model);
-        // IService find nhân viên
+
+        /// <summary>IService find nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<StaffModel>> Find(StaffIdModel model);
-        // IService thêm nhân viên
+
+        /// <summary>IService thêm nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<bool>> Insert(StaffModel model);
-        // IService sửa nhân viên
+
+        /// <summary>IService sửa nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<bool>> Update(StaffModel model);
-        // IService xóa nhân viên
+
+        /// <summary>IService xóa nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<bool>> Delete(StaffIdModel model);
-        // IService get all phòng ban
+
+        /// <summary>IService get all phòng ban</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ValueTask<ResponseModel<List<PartModel>>> GetAllParts(SearchModel model);
     }
     #endregion
+
     #region Define các service sử dụng, implement interface
+    /// <summary>
+    ///     StaffService
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class StaffService : IStaffService
     {
         #region Khai báo IHttpService và constructor
         private readonly IHttpService _httpService;
 
+        /// <summary>Khởi tạo constructor của StaffService</summary>
+        /// <param name="httpService">The HTTP service.</param>
+        /// <exception cref="System.ArgumentNullException">httpService</exception>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public StaffService(IHttpService httpService)
         {
             _httpService = httpService ?? throw new ArgumentNullException(nameof(httpService));
         }
         #endregion
+
         #region Define các service sử dụng
-        // Service get all nhân viên
+        /// <summary>Service get all nhân viên.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<List<StaffModel>>> GetAll(SearchModel model)
         {
             try
@@ -50,7 +134,16 @@ namespace ELearning.Services
                 throw;
             }
         }
-        // Service find nhân viên
+
+        /// <summary>Service find nhân viên.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<StaffModel>> Find(StaffIdModel model)
         {
             try
@@ -67,7 +160,16 @@ namespace ELearning.Services
             }
 
         }
-        // Service thêm nhân viên
+
+        /// <summary>Service thêm nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<bool>> Insert(StaffModel model)
         {
             try
@@ -83,7 +185,16 @@ namespace ELearning.Services
             }
 
         }
-        // Service sửa nhân viên
+
+        /// <summary>Service sửa nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<bool>> Update(StaffModel model)
         {
             try
@@ -100,7 +211,16 @@ namespace ELearning.Services
             }
 
         }
-        // Service xóa nhân viên
+
+        /// <summary>Service xóa nhân viên</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<bool>> Delete(StaffIdModel model)
         {
             try
@@ -117,7 +237,16 @@ namespace ELearning.Services
             }
 
         }
-        // Service get all phòng ban
+
+        /// <summary>Service get all phòng bann</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async ValueTask<ResponseModel<List<PartModel>>> GetAllParts(SearchModel model)
         {
             try

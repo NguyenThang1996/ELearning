@@ -13,10 +13,23 @@ using Xamarin.Forms;
 
 namespace ELearning.ViewModels
 {
+    /// <summary>ListPageViewModel</summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class ListPageViewModel : BaseViewModel
     {
         #region Khai báo các service sử dụng và constructor
         private readonly IStaffService _staffService;
+
+        /// <summary>Khởi tạo constructor của ListPageViewModel</summary>
+        /// <param name="navigationService">The navigation service.</param>
+        /// <param name="staffService">The staff service.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public ListPageViewModel(INavigationService navigationService, IStaffService staffService)
            : base(navigationService)
         {
@@ -24,7 +37,14 @@ namespace ELearning.ViewModels
 
         }
         #endregion
+
         #region Khởi tạo page, nhận các parameter từ trang trước truyền sang
+        /// <summary>Khởi tạo page</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void Initialize(INavigationParameters parameters)
         {
             try
@@ -38,6 +58,17 @@ namespace ELearning.ViewModels
             }
 
         }
+
+        /// <summary>Nhận các parameter từ trang trước truyền sang</summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             try
@@ -56,6 +87,7 @@ namespace ELearning.ViewModels
 
         }
         #endregion
+
         #region Khai báo các biến dùng cơ chế binding dữ liệu 2 chiều
         private List<StaffModel> _staffs;
         public List<StaffModel> Staffs { get => _staffs; set => SetProperty(ref _staffs, value); }
@@ -67,24 +99,37 @@ namespace ELearning.ViewModels
         public string ErrorText { get => _errorText; set => SetProperty(ref _errorText, value); }
         public int _pK_Id = 0;
         #endregion
+
         #region Khai báo các command
         // Command tìm kiếm nhân viên
         public DelegateCommand<string> SearchCommand => new DelegateCommand<string>(Search);
+
         // Command navigate sang trang thêm mới nhân viên
         public DelegateCommand AddCommand => new DelegateCommand(Insert);
+
         // Command navigate sang trang sửa nhân viên
         public DelegateCommand<object> EditCommand => new DelegateCommand<object>(Update);
+
         // Command navigate sang trang xem chi tiết nhân viên
         public DelegateCommand<object> ViewCommand => new DelegateCommand<object>(View);
+
         // Command bật popup confirm xóa nhân viên
         public DelegateCommand<object> DeleteCommand => new DelegateCommand<object>(Delete);
+
         // Command xác nhận xóa nhân viên
         public DelegateCommand PopupAcceptCommand => new DelegateCommand(Accept);
+
         // Command hủy xóa nhân viên
         public DelegateCommand PopupDeclineCommand => new DelegateCommand(Decline);
+
         #endregion
+
         #region Define các hàm sử dụng
-        // Hàm get all nhân viên
+        /// <summary>Hàm get all nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void GetAll()
         {
             try
@@ -117,7 +162,13 @@ namespace ELearning.ViewModels
             }
         
         }
-        // Hàm tìm kiếm nhân viên
+
+        /// <summary>Hàm tìm kiếm nhân viên</summary>
+        /// <param name="keyword">The keyword.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void Search(string keyword)
         {
             try
@@ -155,7 +206,12 @@ namespace ELearning.ViewModels
             }
            
         }
-        // Hàm navigate sang trang thêm mới nhân viên
+
+        /// <summary>Hàm navigate sang trang thêm mới nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         private async void Insert()
         {
             try
@@ -172,7 +228,13 @@ namespace ELearning.ViewModels
             }
            
         }
-        // Hàm navigate sang trang sửa nhân viên
+
+        /// <summary>Hàm navigate sang trang sửa nhân viên</summary>
+        /// <param name="id">The identifier.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async void Update(object id)
         {
             try
@@ -221,7 +283,13 @@ namespace ELearning.ViewModels
             }
          
         }
-        // Hàm navigate sang trang xem chi tiết nhân viên
+
+        /// <summary>Hàm navigate sang trang xem chi tiết nhân viên</summary>
+        /// <param name="id">The identifier.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async void View(object id)
         {
             try
@@ -269,7 +337,13 @@ namespace ELearning.ViewModels
             }
            
         }
-        // Hàm bật popup confirm xóa nhân viên
+
+        /// <summary>Hàm bật popup confirm xóa nhân viên</summary>
+        /// <param name="id">The identifier.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public void Delete(object id)
         {
             try
@@ -284,7 +358,12 @@ namespace ELearning.ViewModels
             }
 
         }
-        // Hàm xác nhận xóa nhân viên
+
+        /// <summary>Hàm xác nhận xóa nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async void Accept()
         {
             try
@@ -319,7 +398,12 @@ namespace ELearning.ViewModels
             }
             
         }
-        // Hàm hủy xóa nhân viên
+
+        /// <summary>Hàm hủy xóa nhân viên</summary>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public void Decline()
         {
             try
