@@ -3,8 +3,24 @@ using System.Security.Cryptography;
 
 namespace ELearningAPI.Common.Helpers
 {
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public static class Encryptor
     {
+        /// <summary>ms the d5 hash.</summary>
+        /// <param name="text">The text.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public static string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

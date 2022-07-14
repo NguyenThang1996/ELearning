@@ -7,22 +7,102 @@ using ELearningAPI.Common.Helpers;
 
 namespace ELearningAPI.Service.Services
 {
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public interface IStaffService
     {
+        /// <summary>Gets all.</summary>
+        /// <param name="keyword">The keyword.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         IList<StaffModel> GetAll(string? keyword);
+
+        /// <summary>Finds the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         StaffModel Find(int id);
+
+        /// <summary>Inserts the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ResponseModel<bool> Insert(StaffModel model);
+
+        /// <summary>Updates the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ResponseModel<bool> Update(StaffModel model);
+
+        /// <summary>Deletes the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         ResponseModel<bool> Delete(int id);
+
+        /// <summary>Gets all parts.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         IList<PartModel> GetAllParts();
     }
 
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class StaffService : IStaffService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private DataContext _dataContext;
 
+        /// <summary>Initializes a new instance of the <see cref="StaffService" /> class.</summary>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <param name="dataContext">The data context.</param>
+        /// <param name="mapper">The mapper.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public StaffService(
             IUnitOfWork unitOfWork,
             DataContext dataContext,
@@ -33,6 +113,15 @@ namespace ELearningAPI.Service.Services
             _dataContext = dataContext;
         }
 
+        /// <summary>Gets all.</summary>
+        /// <param name="keyword">The keyword.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public IList<StaffModel> GetAll(string? keyword)
         {
             try {
@@ -98,6 +187,14 @@ namespace ELearningAPI.Service.Services
           
         }
 
+        /// <summary>Finds the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
         public StaffModel Find(int id)
         {
             try
@@ -126,6 +223,14 @@ namespace ELearningAPI.Service.Services
             }           
         }
 
+        /// <summary>Inserts the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
         public ResponseModel<bool> Insert(StaffModel model)
         {
             try
@@ -145,6 +250,15 @@ namespace ELearningAPI.Service.Services
             }
         }
 
+        /// <summary>Updates the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public ResponseModel<bool> Update(StaffModel model)
         {
             try
@@ -165,6 +279,15 @@ namespace ELearningAPI.Service.Services
             }
         }
 
+        /// <summary>Deletes the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public ResponseModel<bool> Delete(int id)
         {
             try
@@ -186,6 +309,15 @@ namespace ELearningAPI.Service.Services
                 throw;
             }
         }
+
+        /// <summary>Gets all parts.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public IList<PartModel> GetAllParts()
         {
             try {

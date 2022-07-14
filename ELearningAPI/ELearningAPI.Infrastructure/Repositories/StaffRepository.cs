@@ -7,13 +7,60 @@ using ELearningAPI.Infrastructure.Configs;
 
 namespace ELearningAPI.Infrastructure.Repositories
 {
-	public interface IStaffRepository
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
+    public interface IStaffRepository
     {
         DataContext _dataContext { get; }
+
+        /// <summary>Gets all.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         IList<StaffEntity> GetAll();
+
+        /// <summary>Finds the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         StaffEntity Find(int id);
+
+        /// <summary>Inserts the specified entity.</summary>
+        /// <param name="entity">The entity.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         void Insert(StaffEntity entity);
+
+        /// <summary>Updates the specified entity.</summary>
+        /// <param name="entity">The entity.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         void Update(StaffEntity entity);
+
+        /// <summary>Deletes the specified entity.</summary>
+        /// <param name="entity">The entity.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         void Delete(StaffEntity entity);
     }
 	public class StaffRepository : IStaffRepository

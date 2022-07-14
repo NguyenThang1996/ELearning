@@ -5,18 +5,40 @@ using ELearningAPI.Infrastructure.Models;
 
 namespace ELearningAPI.Presentation.Controllers
 {
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     [ApiController]
     [Route("api/staff")]
     public class StaffController : ControllerBase
     {
         private readonly IStaffService _staffService;
 
+        /// <summary>Initializes a new instance of the <see cref="StaffController" /> class.</summary>
+        /// <param name="staffService">The staff service.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public StaffController(
             IStaffService staffService)
         {
             _staffService = staffService;
         }
 
+        /// <summary>Gets all.</summary>
+        /// <param name="Keyword">The keyword.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpGet]
         public IActionResult GetAll(string? Keyword)
         {
@@ -45,6 +67,14 @@ namespace ELearningAPI.Presentation.Controllers
             }           
         }
 
+        /// <summary>Gets all parts.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpGet]
         [Route("getallparts")]
         public IActionResult GetAllParts()
@@ -76,6 +106,15 @@ namespace ELearningAPI.Presentation.Controllers
          
         }
 
+        /// <summary>Finds the specified identifier.</summary>
+        /// <param name="Id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpGet]
         [Route("find")]
         public IActionResult Find(int Id)
@@ -107,6 +146,15 @@ namespace ELearningAPI.Presentation.Controllers
            
         }
 
+        /// <summary>Inserts the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpPost]
         public IActionResult Insert([FromBody] StaffModel model)
         {
@@ -123,6 +171,15 @@ namespace ELearningAPI.Presentation.Controllers
           
         }
 
+        /// <summary>Updates the specified model.</summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpPut]
         public IActionResult Update([FromBody] StaffModel model)
         {
@@ -138,6 +195,15 @@ namespace ELearningAPI.Presentation.Controllers
            
         }
 
+        /// <summary>Deletes the specified identifier.</summary>
+        /// <param name="Id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         [HttpDelete]
         public IActionResult Delete(int Id)
         {

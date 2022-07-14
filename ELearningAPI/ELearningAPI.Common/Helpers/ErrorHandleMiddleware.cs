@@ -7,17 +7,37 @@ using System.Text.Json;
 using System.Threading.Tasks;
 namespace ELearningAPI.Common.Helpers
 {
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    /// <Modified>
+    /// Name Date Comments
+    /// thangnh3 14/07/2022 created
+    /// </Modified>
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
+        /// <summary>Initializes a new instance of the <see cref="ErrorHandlerMiddleware" /> class.</summary>
+        /// <param name="next">The next.</param>
+        /// <param name="logger">The logger.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
         {
             _next = next;
             _logger = logger;
         }
 
+        /// <summary>Invokes the specified context.</summary>
+        /// <param name="context">The context.</param>
+        /// <Modified>
+        /// Name Date Comments
+        /// thangnh3 14/07/2022 created
+        /// </Modified>
         public async Task Invoke(HttpContext context)
         {
             try
