@@ -2,7 +2,6 @@
 using ELearningAPI.Infrastructure.Models;
 using ELearningAPI.Infrastructure.UnitOfWork;
 using ELearningAPI.Infrastructure.Entities;
-using ELearningAPI.Infrastructure.Configs;
 using ELearningAPI.Common.Helpers;
 
 namespace ELearningAPI.Service.Services
@@ -36,7 +35,7 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        StaffModel Find(int id);
+        StaffModel Find(int? id);
 
         /// <summary>Inserts the specified model.</summary>
         /// <param name="model">The model.</param>
@@ -47,7 +46,7 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        ResponseModel<bool> Insert(StaffModel model);
+        string Insert(StaffModel model);
 
         /// <summary>Updates the specified model.</summary>
         /// <param name="model">The model.</param>
@@ -58,7 +57,7 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        ResponseModel<bool> Update(StaffModel model);
+        string Update(StaffModel model);
 
         /// <summary>Deletes the specified identifier.</summary>
         /// <param name="id">The identifier.</param>
@@ -69,7 +68,7 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        ResponseModel<bool> Delete(int id);
+        string Delete(int? id);
 
         /// <summary>Gets all parts.</summary>
         /// <returns>
@@ -93,11 +92,9 @@ namespace ELearningAPI.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private DataContext _dataContext;
 
         /// <summary>Initializes a new instance of the <see cref="StaffService" /> class.</summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        /// <param name="dataContext">The data context.</param>
         /// <param name="mapper">The mapper.</param>
         /// <Modified>
         /// Name Date Comments
@@ -105,12 +102,10 @@ namespace ELearningAPI.Service.Services
         /// </Modified>
         public StaffService(
             IUnitOfWork unitOfWork,
-            DataContext dataContext,
             IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _dataContext = dataContext;
         }
 
         /// <summary>Gets all.</summary>
@@ -124,67 +119,81 @@ namespace ELearningAPI.Service.Services
         /// </Modified>
         public IList<StaffModel> GetAll(string? keyword)
         {
-            try {
+            try
+            {
                 var staffs = _unitOfWork.StaffRepository().GetAll();
                 var parts = _unitOfWork.PartRepository().GetAll();
-                var _staffs = new List<StaffModel>();
-                if (keyword != null)
+                if (staffs != null && parts != null)
                 {
+                    var _staffs = new List<StaffModel>();
+                    if (keyword != null)
+                    {
+                        _staffs = (from s in staffs
+                                   join p in parts
+                                   on s.FK_PartId equals p.PK_Id
+                                   where (s.Name.ToUpper().Contains(keyword.ToUpper()) || s.Address.ToUpper().Contains(keyword.ToUpper())
+                                   || s.Tel.ToUpper().Contains(keyword.ToUpper()) || s.Email.ToUpper().Contains(keyword.ToUpper())) && s.IsActive == true && s.IsDeleted == false
+                                   orderby s.PK_Id descending
+                                   select new StaffModel
+                                   {
+                                       PK_Id = s.PK_Id,
+                                       Name = s.Name,
+                                       Address = s.Address,
+                                       Tel = s.Tel,
+                                       Email = s.Email,
+                                       Gender = s.Gender,
+                                       Avatar = s.Avatar,
+                                       PartName = p.Name,
+                                       FK_PartId = s.FK_PartId,
+                                       IsActive = s.IsActive,
+                                       IsDeleted = s.IsDeleted,
+                                       CreatedDate = s.CreatedDate,
+                                       CreatedBy = s.CreatedBy,
+                                       UpdatedDate = s.UpdatedDate,
+                                       UpdatedBy = s.UpdatedBy
+                                   }).ToList();
+                        if (_staffs != null)
+                        {
+                            return _staffs;
+                        }
+                        return null;
+                    }
                     _staffs = (from s in staffs
-                                  join p in parts
-                                  on s.FK_PartId equals p.PK_Id
-                                  where (s.Name.ToUpper().Contains(keyword.ToUpper()) || s.Address.ToUpper().Contains(keyword.ToUpper())
-                                  || s.Tel.ToUpper().Contains(keyword.ToUpper()) || s.Email.ToUpper().Contains(keyword.ToUpper())) && s.IsActive == true && s.IsDeleted == false
-                                  orderby s.PK_Id descending
-                                  select new StaffModel
-                                  {
-                                      PK_Id = s.PK_Id,
-                                      Name = s.Name,
-                                      Address = s.Address,
-                                      Tel = s.Tel,
-                                      Email = s.Email,
-                                      Gender = s.Gender,
-                                      Avatar = s.Avatar,
-                                      PartName = p.Name,
-                                      FK_PartId = s.FK_PartId,
-                                      IsActive = s.IsActive,
-                                      IsDeleted = s.IsDeleted,
-                                      CreatedDate = s.CreatedDate,
-                                      CreatedBy = s.CreatedBy,
-                                      UpdatedDate = s.UpdatedDate,
-                                      UpdatedBy = s.UpdatedBy
-                                  }).ToList();
-                    return _staffs;
+                               join p in parts
+                               on s.FK_PartId equals p.PK_Id
+                               where s.IsActive == true && s.IsDeleted == false
+                               orderby s.PK_Id descending
+                               select new StaffModel
+                               {
+                                   PK_Id = s.PK_Id,
+                                   Name = s.Name,
+                                   Address = s.Address,
+                                   Tel = s.Tel,
+                                   Email = s.Email,
+                                   Gender = s.Gender,
+                                   Avatar = s.Avatar,
+                                   PartName = p.Name,
+                                   FK_PartId = s.FK_PartId,
+                                   IsActive = s.IsActive,
+                                   IsDeleted = s.IsDeleted,
+                                   CreatedDate = s.CreatedDate,
+                                   CreatedBy = s.CreatedBy,
+                                   UpdatedDate = s.UpdatedDate,
+                                   UpdatedBy = s.UpdatedBy
+                               }).ToList();
+                    if (_staffs != null)
+                    {
+                        return _staffs;
+                    }
+                    return null;
                 }
-                _staffs = (from s in staffs
-                              join p in parts
-                              on s.FK_PartId equals p.PK_Id
-                              where s.IsActive == true && s.IsDeleted == false
-                              orderby s.PK_Id descending
-                              select new StaffModel
-                              {
-                                  PK_Id = s.PK_Id,
-                                  Name = s.Name,
-                                  Address = s.Address,
-                                  Tel = s.Tel,
-                                  Email = s.Email,
-                                  Gender = s.Gender,
-                                  Avatar = s.Avatar,
-                                  PartName = p.Name,
-                                  FK_PartId = s.FK_PartId,
-                                  IsActive = s.IsActive,
-                                  IsDeleted = s.IsDeleted,
-                                  CreatedDate = s.CreatedDate,
-                                  CreatedBy = s.CreatedBy,
-                                  UpdatedDate = s.UpdatedDate,
-                                  UpdatedBy = s.UpdatedBy
-                              }).ToList();
-                return _staffs;
+                return new List<StaffModel>();
             }
-            catch (Exception ex) {
-                throw;
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "StaffService", "GetAll");
+                return null;
             }
-          
         }
 
         /// <summary>Finds the specified identifier.</summary>
@@ -195,32 +204,41 @@ namespace ELearningAPI.Service.Services
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
-        public StaffModel Find(int id)
+        public StaffModel Find(int? id)
         {
             try
             {
                 var staff = _unitOfWork.StaffRepository().Find(id);
-                var part = _unitOfWork.PartRepository().Find(staff.FK_PartId);
-                var _staff = _mapper.Map<StaffModel>(staff);
-                _staff.PartName = part.Name;
-                if (_staff.Gender == 1)
+                if (staff != null)
                 {
-                    _staff.GenderName = "Nam";
+                    var part = _unitOfWork.PartRepository().Find(staff.FK_PartId);
+                    if (part != null)
+                    {
+                        var _staff = _mapper.Map<StaffModel>(staff);
+                        _staff.PartName = part.Name;
+                        if (_staff.Gender == 1)
+                        {
+                            _staff.GenderName = "Nam";
+                        }
+                        else if (_staff.Gender == 2)
+                        {
+                            _staff.GenderName = "Nữ";
+                        }
+                        else
+                        {
+                            _staff.GenderName = "Khác";
+                        }
+                        return _staff;
+                    }
+                    return null;
                 }
-                else if (_staff.Gender == 2)
-                {
-                    _staff.GenderName = "Nữ";
-                }
-                else
-                {
-                    _staff.GenderName = "Khác";
-                }
-                return _staff;
+                return null;
             }
             catch (Exception ex)
             {
-                throw;
-            }           
+                ExceptionLog.GetException(ex, "StaffService", "Find");
+                return null;
+            }
         }
 
         /// <summary>Inserts the specified model.</summary>
@@ -231,22 +249,22 @@ namespace ELearningAPI.Service.Services
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
-        public ResponseModel<bool> Insert(StaffModel model)
+        public string Insert(StaffModel model)
         {
             try
-            {                
+            {
                 if (_unitOfWork.StaffRepository().GetAll().Any(x => x.Email == model.Email))
-                    return new ResponseModel<bool> { Status = false, Message = "Email '" + model.Email + "' đã được sử dụng" };
+                    return "emailDuplicate";
                 _unitOfWork.BeginTransaction();
                 _unitOfWork.StaffRepository().Insert(_mapper.Map<StaffEntity>(model));
                 _unitOfWork.CommitTransaction();
-                return new ResponseModel<bool> { Status = true, Message = "Thêm mới nhân viên thành công" };
+                return "true";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 _unitOfWork.RollbackTransaction();
-                return new ResponseModel<bool> { Status = false, Message = "Thêm mới nhân viên thất bại" };
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Insert");
+                return "false";
             }
         }
 
@@ -259,23 +277,27 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        public ResponseModel<bool> Update(StaffModel model)
+        public string Update(StaffModel model)
         {
             try
             {
                 var staff = _unitOfWork.StaffRepository().Find(model.PK_Id);
-                if (model.Email != staff.Email && _unitOfWork.StaffRepository().GetAll().Any(x => x.Email == model.Email))
-                    return new ResponseModel<bool> { Status = false, Message = "Email '" + model.Email + "' đã được sử dụng" };
-                _unitOfWork.BeginTransaction();
-                _unitOfWork.StaffRepository().Update(_mapper.Map<StaffEntity>(model));
-                _unitOfWork.CommitTransaction();
-                return new ResponseModel<bool> { Status = true, Message = "Sửa nhân viên thành công" };
+                if (staff != null)
+                {
+                    if (model.Email != staff.Email && _unitOfWork.StaffRepository().GetAll().Any(x => x.Email == model.Email))
+                        return "emailDuplicate";
+                    _unitOfWork.BeginTransaction();
+                    _unitOfWork.StaffRepository().Update(_mapper.Map<StaffEntity>(model));
+                    _unitOfWork.CommitTransaction();
+                    return "true";
+                }
+                return "false";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 _unitOfWork.RollbackTransaction();
-                //return new ResponseModel<bool> { Status = false, Message = "Sửa nhân viên thất bại" };
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Update");
+                return "false";
             }
         }
 
@@ -288,25 +310,27 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        public ResponseModel<bool> Delete(int id)
+        public string Delete(int? id)
         {
             try
             {
-                _unitOfWork.BeginTransaction();
                 var staff = _unitOfWork.StaffRepository().Find(id);
-                //if (staff == null)
-                //    throw new KeyNotFoundException();
-                staff.IsDeleted = true;
-                staff.IsActive = false;
-                _unitOfWork.StaffRepository().Delete(_mapper.Map<StaffEntity>(staff));
-                _unitOfWork.CommitTransaction();
-                return new ResponseModel<bool> { Status = true, Message = "Xóa nhân viên thành công" };
+                if (staff != null)
+                {
+                    staff.IsDeleted = true;
+                    staff.IsActive = false;
+                    _unitOfWork.BeginTransaction();
+                    _unitOfWork.StaffRepository().Delete(_mapper.Map<StaffEntity>(staff));
+                    _unitOfWork.CommitTransaction();
+                    return "true";
+                }
+                return "false";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 _unitOfWork.RollbackTransaction();
-                return new ResponseModel<bool> { Status = false, Message = "Xóa nhân viên thất bại" };
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Delete");
+                return "false";
             }
         }
 
@@ -320,12 +344,19 @@ namespace ELearningAPI.Service.Services
         /// </Modified>
         public IList<PartModel> GetAllParts()
         {
-            try {
-                var parts =_unitOfWork.PartRepository().GetAll();
-                return _mapper.Map<IList<PartModel>>(parts);
+            try
+            {
+                var parts = _unitOfWork.PartRepository().GetAll();
+                if (parts != null)
+                {
+                    return _mapper.Map<IList<PartModel>>(parts);
+                }
+                return null;
             }
-            catch (Exception ex) {
-                throw;
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "StaffService", "GetAllParts");
+                return null;
             }
         }
     }

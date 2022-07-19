@@ -4362,25 +4362,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thangnh3\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
+      "projectUniqueName": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
       "projectName": "ELearning.Android",
-      "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
-      "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
-      "outputPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\obj\\",
+      "projectPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
+      "packagesPath": "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\",
+      "outputPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Nguyen Huy Thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4393,8 +4388,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj": {
-              "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj"
+            "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj": {
+              "projectPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj"
             }
           }
         }

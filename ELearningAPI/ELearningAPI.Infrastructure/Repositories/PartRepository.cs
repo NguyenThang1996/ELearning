@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ELearningAPI.Infrastructure.Models;
+﻿using ELearningAPI.Common.Helpers;
 using ELearningAPI.Infrastructure.Entities;
 using ELearningAPI.Infrastructure.Configs;
 
@@ -17,8 +14,26 @@ namespace ELearningAPI.Infrastructure.Repositories
     public interface IPartRepository
     {
         DataContext _dataContext { get; }
+        /// <summary>Gets all.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comment
+        /// Nguyen Huy Thang 19/07/2022 created
+        /// </Modified>
         IList<PartEntity> GetAll();
-        PartEntity Find(int id);
+
+        /// <summary>Finds the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <Modified>
+        /// Name Date Comment
+        /// Nguyen Huy Thang 19/07/2022 created
+        /// </Modified>
+        PartEntity Find(int? id);
     }
     /// <summary>
     ///   <br />
@@ -54,11 +69,17 @@ namespace ELearningAPI.Infrastructure.Repositories
 		{
             try
             {
-                return _dataContext.Parts.ToList();
+                var parts = _dataContext.Parts.ToList();
+                if (parts != null)
+                {
+                    return parts;
+                }
+                return null;
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "PartRepository", "GetAll");
+                return null;
             }
         }
 
@@ -71,15 +92,26 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        public PartEntity Find(int id)
+        public PartEntity Find(int? id)
         {
             try
             {
-                return _dataContext.Parts.Find(id);
+                var parts = _dataContext.Parts;
+                if (parts != null)
+                {
+                    var part = parts.Find(id);
+                    if (part != null)
+                    {
+                        return part;
+                    }
+                    return null;
+                }
+                return null;
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "PartRepository", "Find");
+                return null;
             }
         }
     }

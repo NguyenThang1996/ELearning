@@ -99,7 +99,7 @@ namespace ELearning.Services
         {
             httpClient = new HttpClient
             {
-                BaseAddress = new Uri("http://10.1.11.102:6001/") 
+                BaseAddress = new Uri("http://192.168.0.3:6001/") 
             };
         }
         #endregion

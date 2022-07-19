@@ -1,4 +1,4 @@
-﻿using ELearningAPI.Infrastructure.Entities;
+﻿using ELearningAPI.Common.Helpers;
 using ELearningAPI.Infrastructure.Models;
 using ELearningAPI.Service.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -42,45 +42,54 @@ namespace ELearningAPI.Presentation.Controllers
         [HttpPost("checklogin")]
         public IActionResult CheckLogin([FromBody] UserLoginModel model)
         {
+            var response = new ResponseModel<UserModel>();
             try
             {
-                var respone = new ResponseModel<UserModel>();
-                var user = _userService.CheckLogin(model);
-                if (user == null)
+                if (model != null)
                 {
-                    respone.Data = null;
-                    respone.Status = false;
-                    respone.Message = "Tài khoản hoặc mật khẩu không chính xác";
-                }
-                else
-                {
-                    if (user.IsActive == false)
+                    var user = _userService.CheckLogin(model);
+                    if (user == null)
                     {
-                        respone.Data = null;
-                        respone.Status = false;
-                        respone.Message = "Tài khoản của bạn đã bị khóa";
-                    }
-                    else if (user.IsDeleted == true)
-                    {
-                        respone.Data = null;
-                        respone.Status = false;
-                        respone.Message = "Tài khoản của bạn đã bị xóa khỏi hệ thống";
+                        response.Data = null;
+                        response.Status = false;
+                        response.Message = "Tài khoản hoặc mật khẩu không chính xác";
                     }
                     else
                     {
-                        respone.Data = user;
-                        respone.Status = true;
-                        respone.Message = "Đăng nhập thành công";
+                        if (user.IsActive == false)
+                        {
+                            response.Data = null;
+                            response.Status = false;
+                            response.Message = "Tài khoản của bạn đã bị khóa";
+                        }
+                        else if (user.IsDeleted == true)
+                        {
+                            response.Data = null;
+                            response.Status = false;
+                            response.Message = "Tài khoản của bạn đã bị xóa khỏi hệ thống";
+                        }
+                        else
+                        {
+                            response.Data = user;
+                            response.Status = true;
+                            response.Message = "Đăng nhập thành công";
+                        }
                     }
+                    return Ok(response);
                 }
-                return Ok(respone);
+                response.Data = null;
+                response.Status = true;
+                response.Message = "Đăng nhập thất bại";
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "UserController", "CheckLogin");
+                response.Status = false;
+                response.Message = "Xóa nhân viên thất bại";
+                return Ok(response);
             }
-          
+
         }
     }
 }

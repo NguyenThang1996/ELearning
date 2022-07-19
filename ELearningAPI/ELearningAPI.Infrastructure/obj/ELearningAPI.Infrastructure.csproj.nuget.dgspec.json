@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj": {}
+    "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj": {
+    "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj",
+        "projectUniqueName": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj",
         "projectName": "ELearningAPI.Common",
-        "projectPath": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj",
-        "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
-        "outputPath": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\obj\\",
+        "projectPath": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nguyen Huy Thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,25 +76,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj": {
+    "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj",
         "projectName": "ELearningAPI.Infrastructure",
-        "projectPath": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
-        "outputPath": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Infrastructure\\obj\\",
+        "projectPath": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Infrastructure\\ELearningAPI.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nguyen Huy Thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,15 +98,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj": {
-                "projectPath": "D:\\Thang\\LapEx\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj"
+              "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj": {
+                "projectPath": "D:\\Git\\ELearning\\ELearningAPI\\ELearningAPI.Common\\ELearningAPI.Common.csproj"
               }
             }
           }
@@ -144,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

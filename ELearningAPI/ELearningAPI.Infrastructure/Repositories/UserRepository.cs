@@ -1,4 +1,5 @@
-﻿using ELearningAPI.Infrastructure.Configs;
+﻿using ELearningAPI.Common.Helpers;
+using ELearningAPI.Infrastructure.Configs;
 using ELearningAPI.Infrastructure.Entities;
 
 namespace ELearningAPI.Infrastructure.Repositories
@@ -53,19 +54,21 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         public IList<UserEntity> GetAll()
 		{
 			try
 			{
-				return _dataContext.Users.ToList();
-			}
+                var users = _dataContext.Users.ToList();
+                if (users != null)
+                {
+                    return users;
+                }
+                return null;
+     ;		}
 			catch (Exception ex) {
-				throw;
-			}
+                ExceptionLog.GetException(ex, "UserRepository", "GetAll");
+                return null;
+            }
 		}		
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ELearningAPI.Service.Services;
-using ELearningAPI.Infrastructure.Entities;
 using ELearningAPI.Infrastructure.Models;
+using ELearningAPI.Common.Helpers;
 
 namespace ELearningAPI.Presentation.Controllers
 {
@@ -31,7 +31,7 @@ namespace ELearningAPI.Presentation.Controllers
         }
 
         /// <summary>Gets all.</summary>
-        /// <param name="Keyword">The keyword.</param>
+        /// <param name="keyword">The keyword.</param>
         /// <returns>
         ///   <br />
         /// </returns>
@@ -40,31 +40,35 @@ namespace ELearningAPI.Presentation.Controllers
         /// thangnh3 14/07/2022 created
         /// </Modified>
         [HttpGet]
-        public IActionResult GetAll(string? Keyword)
+        public IActionResult GetAll(string? keyword)
         {
+            var response = new ResponseModel<IList<StaffModel>>();
             try
             {
-                var staffs = _staffService.GetAll(Keyword);
-                var respone = new ResponseModel<IList<StaffModel>>();
+                var staffs = _staffService.GetAll(keyword);
                 if (staffs == null)
                 {
-                    respone.Data = null;
-                    respone.Status = false;
-                    respone.Message = "Lấy danh sách nhân viên thất bại";
+                    response.Data = null;
+                    response.Status = false;
+                    response.Message = "Lấy danh sách nhân viên thất bại";
                 }
                 else
                 {
 
-                    respone.Data = staffs;
-                    respone.Status = true;
-                    respone.Message = "Lấy danh sách nhân viên thành công";
+                    response.Data = staffs;
+                    response.Status = true;
+                    response.Message = "Lấy danh sách nhân viên thành công";
                 }
-                return Ok(respone);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                throw;
-            }           
+                ExceptionLog.GetException(ex, "StaffController", "GetAll");
+                response.Data = null;
+                response.Status = false;
+                response.Message = "Lấy danh sách nhân viên thất bại";
+                return Ok(response);
+            }
         }
 
         /// <summary>Gets all parts.</summary>
@@ -79,35 +83,37 @@ namespace ELearningAPI.Presentation.Controllers
         [Route("getallparts")]
         public IActionResult GetAllParts()
         {
+            var response = new ResponseModel<IList<PartModel>>();
             try
             {
                 var parts = _staffService.GetAllParts();
-                var respone = new ResponseModel<IList<PartModel>>();
                 if (parts == null)
                 {
-                    respone.Data = null;
-                    respone.Status = false;
-                    respone.Message = "Lấy danh sách phòng ban thất bại";
+                    response.Data = null;
+                    response.Status = false;
+                    response.Message = "Lấy danh sách phòng ban thất bại";
                 }
                 else
                 {
 
-                    respone.Data = parts;
-                    respone.Status = true;
-                    respone.Message = "Lấy danh sách phòng ban thành công";
+                    response.Data = parts;
+                    response.Status = true;
+                    response.Message = "Lấy danh sách phòng ban thành công";
                 }
-                return Ok(respone);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffController", "GetAllParts");
+                response.Data = null;
+                response.Status = false;
+                response.Message = "Lấy danh sách phòng ban thất bại";
+                return Ok(response);
             }
-         
         }
 
         /// <summary>Finds the specified identifier.</summary>
-        /// <param name="Id">The identifier.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns>
         ///   <br />
         /// </returns>
@@ -117,33 +123,43 @@ namespace ELearningAPI.Presentation.Controllers
         /// </Modified>
         [HttpGet]
         [Route("find")]
-        public IActionResult Find(int Id)
+        public IActionResult Find(int? id)
         {
+            var response = new ResponseModel<StaffModel>();
             try
             {
-                var staff = _staffService.Find(Id);
-                var respone = new ResponseModel<StaffModel>();
-                if (staff == null)
+                if (id != null)
                 {
-                    respone.Data = null;
-                    respone.Status = false;
-                    respone.Message = "Lấy chi tiết nhân viên thất bại";
-                }
-                else
-                {
+                    var staff = _staffService.Find(id);
+                    if (staff == null)
+                    {
+                        response.Data = null;
+                        response.Status = false;
+                        response.Message = "Lấy chi tiết nhân viên thất bại";
+                    }
+                    else
+                    {
 
-                    respone.Data = staff;
-                    respone.Status = true;
-                    respone.Message = "Lấy chi tiết nhân viên thành công";
+                        response.Data = staff;
+                        response.Status = true;
+                        response.Message = "Lấy chi tiết nhân viên thành công";
+                    }
+                    return Ok(response);
                 }
-                return Ok(respone);
+                response.Data = null;
+                response.Status = false;
+                response.Message = "Lấy chi tiết nhân viên thất bại";
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffController", "Find");
+                response.Data = null;
+                response.Status = false;
+                response.Message = "Lấy chi tiết nhân viên thất bại";
+                return Ok(response);
             }
-           
+
         }
 
         /// <summary>Inserts the specified model.</summary>
@@ -158,17 +174,40 @@ namespace ELearningAPI.Presentation.Controllers
         [HttpPost]
         public IActionResult Insert([FromBody] StaffModel model)
         {
+            var response = new ResponseModel<bool>();
             try
             {
-                var response = _staffService.Insert(model);               
+                if (model != null)
+                {
+                    var _response = _staffService.Insert(model);
+                    if (_response == "emailDuplicate")
+                    {
+                        response.Status = false;
+                        response.Message = "Email '" + model.Email + "' đã được sử dụng";
+                    }
+                    if (_response == "false")
+                    {
+                        response.Status = false;
+                        response.Message = "Thêm mới nhân viên thất bại";
+                    }
+                    else
+                    {
+                        response.Status = true;
+                        response.Message = "Thêm mới nhân viên thành công";
+                    }
+                    return Ok(response);
+                }
+                response.Status = false;
+                response.Message = "Thêm mới nhân viên thất bại";
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffController", "Insert");
+                response.Status = false;
+                response.Message = "Thêm mới nhân viên thất bại";
+                return Ok(response); ;
             }
-          
         }
 
         /// <summary>Updates the specified model.</summary>
@@ -183,20 +222,44 @@ namespace ELearningAPI.Presentation.Controllers
         [HttpPut]
         public IActionResult Update([FromBody] StaffModel model)
         {
+            var response = new ResponseModel<bool>();
             try
             {
-                var response = _staffService.Update(model);
+                if (model != null)
+                {
+                    var _response = _staffService.Update(model);
+                    if (_response == "emailDuplicate")
+                    {
+                        response.Status = false;
+                        response.Message = "Email '" + model.Email + "' đã được sử dụng";
+                    }
+                    if (_response == "false")
+                    {
+                        response.Status = false;
+                        response.Message = "Sửa nhân viên thất bại";
+                    }
+                    else
+                    {
+                        response.Status = true;
+                        response.Message = "Sửa nhân viên thành công";
+                    }
+                    return Ok(response);
+                }
+                response.Status = false;
+                response.Message = "Sửa nhân viên thất bại";
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "StaffController", "Update");
+                response.Status = false;
+                response.Message = "Sửa nhân viên thất bại";
+                return Ok(response); ;
             }
-           
         }
 
         /// <summary>Deletes the specified identifier.</summary>
-        /// <param name="Id">The identifier.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns>
         ///   <br />
         /// </returns>
@@ -205,19 +268,37 @@ namespace ELearningAPI.Presentation.Controllers
         /// thangnh3 14/07/2022 created
         /// </Modified>
         [HttpDelete]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int? id)
         {
+            var response = new ResponseModel<bool>();
             try
             {
-                var response = _staffService.Delete(Id);
+                if (id != null)
+                {
+                    var _response = _staffService.Delete(id);
+                    if (_response == "false")
+                    {
+                        response.Status = false;
+                        response.Message = "Xóa nhân viên thất bại";
+                    }
+                    else
+                    {
+                        response.Status = true;
+                        response.Message = "Xóa nhân viên thành công";
+                    }
+                    return Ok(response);
+                }
+                response.Status = false;
+                response.Message = "Xóa nhân viên thất bại";
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffController", "Delete");
+                response.Status = false;
+                response.Message = "Xóa nhân viên thất bại";
+                return Ok(response); ;
             }
-
         }
     }
 }

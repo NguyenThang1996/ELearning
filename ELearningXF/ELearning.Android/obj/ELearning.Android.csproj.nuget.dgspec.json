@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj": {}
+    "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj": {}
   },
   "projects": {
-    "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj": {
+    "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
+        "projectUniqueName": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
         "projectName": "ELearning.Android",
-        "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
-        "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
-        "outputPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning.Android\\obj\\",
+        "projectPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\ELearning.Android.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nguyen Huy Thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +28,8 @@
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj": {
-                "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj"
+              "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj": {
+                "projectPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj"
               }
             }
           }
@@ -90,21 +86,17 @@
         }
       }
     },
-    "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj": {
+    "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj",
+        "projectUniqueName": "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj",
         "projectName": "ELearning",
-        "projectPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\ELearning.csproj",
-        "packagesPath": "C:\\Users\\thangnh3\\.nuget\\packages\\",
-        "outputPath": "D:\\Thang\\LapEx\\ELearningXF\\ELearning\\obj\\",
+        "projectPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning\\ELearning.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Huy Thang\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\ELearning\\ELearningXF\\ELearning\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thangnh3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nguyen Huy Thang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -112,7 +104,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -195,7 +186,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

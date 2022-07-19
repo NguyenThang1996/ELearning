@@ -34,3 +34,15 @@ D:\Thang\LapEx\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.
 D:\Thang\LapEx\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\refint\ELearningAPI.Common.dll
 D:\Thang\LapEx\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.pdb
 D:\Thang\LapEx\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ref\ELearningAPI.Common.dll
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\bin\Release\net6.0\ELearningAPI.Common.deps.json
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\bin\Release\net6.0\ELearningAPI.Common.dll
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\bin\Release\net6.0\ELearningAPI.Common.pdb
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.csproj.AssemblyReference.cache
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.AssemblyInfoInputs.cache
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.AssemblyInfo.cs
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.csproj.CoreCompileInputs.cache
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.dll
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\refint\ELearningAPI.Common.dll
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ELearningAPI.Common.pdb
+D:\Git\ELearning\ELearningAPI\ELearningAPI.Common\obj\Release\net6.0\ref\ELearningAPI.Common.dll

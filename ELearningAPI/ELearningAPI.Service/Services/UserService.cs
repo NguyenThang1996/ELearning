@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ELearningAPI.Infrastructure.Entities;
 using ELearningAPI.Infrastructure.Models;
 using ELearningAPI.Infrastructure.UnitOfWork;
 using ELearningAPI.Common.Helpers;
@@ -37,7 +36,6 @@ namespace ELearningAPI.Service.Services
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
-
         private readonly IMapper _mapper;
 
         /// <summary>Initializes a new instance of the <see cref="UserService" /> class.</summary>
@@ -62,19 +60,25 @@ namespace ELearningAPI.Service.Services
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         public UserModel CheckLogin(UserLoginModel model)
         {
             try {
                 var users = _unitOfWork.UserRepository().GetAll();
-                var user = users.Where(n => n.Username == model.Username && n.Password.ToUpper() == Encryptor.MD5Hash(model.Password).ToUpper()).FirstOrDefault();
-                return _mapper.Map<UserModel>(user); ;
+                if (users != null)
+                {
+                    var user = users.Where(n => n.Username == model.Username && n.Password.ToUpper() == Encryptor.MD5Hash(model.Password).ToUpper());
+                    if (user != null)
+                    {
+                        var _user = user.FirstOrDefault();
+                        return _mapper.Map<UserModel>(_user); ;
+                    }
+                    return null;                 
+                }
+                return null;     
             }
             catch (Exception ex) {
-                throw;
+                ExceptionLog.GetException(ex, "UserService", "CheckLogin");
+                return null;
             }
          
         }
