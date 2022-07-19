@@ -256,9 +256,18 @@ namespace ELearningAPI.Service.Services
                 if (_unitOfWork.StaffRepository().GetAll().Any(x => x.Email == model.Email))
                     return "emailDuplicate";
                 _unitOfWork.BeginTransaction();
-                _unitOfWork.StaffRepository().Insert(_mapper.Map<StaffEntity>(model));
-                _unitOfWork.CommitTransaction();
-                return "true";
+                var response = _unitOfWork.StaffRepository().Insert(_mapper.Map<StaffEntity>(model));
+                if (response == true)
+                {
+                    _unitOfWork.CommitTransaction();
+                    return "true";
+                }
+
+                else
+                {
+                    _unitOfWork.RollbackTransaction();
+                    return "false";
+                }                  
             }
             catch (Exception ex)
             {
@@ -287,9 +296,18 @@ namespace ELearningAPI.Service.Services
                     if (model.Email != staff.Email && _unitOfWork.StaffRepository().GetAll().Any(x => x.Email == model.Email))
                         return "emailDuplicate";
                     _unitOfWork.BeginTransaction();
-                    _unitOfWork.StaffRepository().Update(_mapper.Map<StaffEntity>(model));
-                    _unitOfWork.CommitTransaction();
-                    return "true";
+                    var response = _unitOfWork.StaffRepository().Update(_mapper.Map<StaffEntity>(model));
+                    if (response == true)
+                    {
+                        _unitOfWork.CommitTransaction();
+                        return "true";
+                    }
+
+                    else
+                    {
+                        _unitOfWork.RollbackTransaction();
+                        return "false";
+                    }
                 }
                 return "false";
             }

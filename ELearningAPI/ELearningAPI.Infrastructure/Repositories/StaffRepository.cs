@@ -43,7 +43,7 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        void Insert(StaffEntity entity);
+        bool Insert(StaffEntity entity);
 
         /// <summary>Updates the specified entity.</summary>
         /// <param name="entity">The entity.</param>
@@ -51,7 +51,7 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        void Update(StaffEntity entity);
+        bool Update(StaffEntity entity);
 
         /// <summary>Deletes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
@@ -59,7 +59,7 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        void Delete(StaffEntity entity);
+        bool Delete(StaffEntity entity);
     }
 
     /// <summary>
@@ -90,15 +90,17 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comment
         /// Nguyen Huy Thang 19/07/2022 created
         /// </Modified>
-        public void Delete(StaffEntity entity)
+        public bool Delete(StaffEntity entity)
         {
             try
             {
                 _dataContext.Staffs.Update(entity);
+                return true;
             }
             catch (Exception ex)
             {
                 ExceptionLog.GetException(ex, "StaffRepository", "Delete");
+                return false;
             }
         }
 
@@ -165,15 +167,17 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// <Modified>
         /// Name Date Comment
         /// Nguyen Huy Thang 19/07/2022 created
-        public void Insert(StaffEntity entity)
+        public bool Insert(StaffEntity entity)
         {
             try
             {
                 _dataContext.Staffs.Add(entity);
+                return true;
             }
             catch (Exception ex)
             {
                 ExceptionLog.GetException(ex, "StaffRepository", "Insert");
+                return false;
             }
         }
 
@@ -183,15 +187,17 @@ namespace ELearningAPI.Infrastructure.Repositories
         /// Name Date Comment
         /// Nguyen Huy Thang 19/07/2022 created
         /// </Modified>
-        public void Update(StaffEntity entity)
+        public bool Update(StaffEntity entity)
         {
             try
             {
                 _dataContext.Staffs.Update(entity);
+                return true;
             }
             catch (Exception ex)
             {
                 ExceptionLog.GetException(ex, "StaffRepository", "Update");
+                return false;
             }
 
         }

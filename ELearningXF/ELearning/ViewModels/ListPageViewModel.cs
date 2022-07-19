@@ -1,15 +1,11 @@
-﻿using ELearning.Models;
+﻿using ELearning.Helpers;
+using ELearning.Models;
 using ELearning.Services;
 using ELearning.Views;
-using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ELearning.ViewModels
 {
@@ -51,10 +47,9 @@ namespace ELearning.ViewModels
             {
                 GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Initialize");
             }
 
         }
@@ -79,10 +74,9 @@ namespace ELearning.ViewModels
                     GetAll();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "OnNavigatedTo");
             }
 
         }
@@ -155,10 +149,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Lấy danh sách nhân viên thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "GetAll");
             }
         
         }
@@ -199,10 +192,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Lấy danh sách nhân viên thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Search");
             }
            
         }
@@ -221,10 +213,9 @@ namespace ELearning.ViewModels
                 parameters.Add("IsUpdate", false);
                 await navigationService.NavigateAsync(nameof(AddEditPage), parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Insert");
             }
            
         }
@@ -276,10 +267,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Lấy chi tiết nhân viên thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Update");
             }
          
         }
@@ -330,10 +320,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Lấy chi tiết nhân viên thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "View");
             }
            
         }
@@ -391,10 +380,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Xóa nhân viên thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Accept");
             }
             
         }
@@ -411,10 +399,9 @@ namespace ELearning.ViewModels
                 GetAll();
                 IsReload = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "ListPageViewModel", "Decline");
             }
 
         }

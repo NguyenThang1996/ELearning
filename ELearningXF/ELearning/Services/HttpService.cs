@@ -1,8 +1,7 @@
 ﻿using ELearning.Extensions;
-using ELearning.Models;
+using ELearning.Helpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +131,7 @@ namespace ELearning.Services
             }
             catch (Exception ex)
             {
+                ExceptionLog.GetException(ex, "HttpService", "GetAsync");
                 return default;
             }
         }
@@ -159,6 +159,7 @@ namespace ELearning.Services
             }
             catch (Exception ex)
             {
+                ExceptionLog.GetException(ex, "HttpService", "PostAsync");
                 return default;
             }
         }
@@ -186,6 +187,7 @@ namespace ELearning.Services
             }
             catch (Exception ex)
             {
+                ExceptionLog.GetException(ex, "HttpService", "PutAsync");
                 return default;
             }
         }
@@ -217,6 +219,7 @@ namespace ELearning.Services
             }
             catch (Exception ex)
             {
+                ExceptionLog.GetException(ex, "HttpService", "DeleteAsync");
                 return default;
             }
         }

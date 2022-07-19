@@ -20,8 +20,7 @@
         public static void GetException(Exception ex, string controller, string method) {
             try {
                 StreamWriter sr = File.AppendText("LogException.txt");
-                sr.WriteLine("Controller: " + controller + " - Method: " + method + " - DateTime: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - An Error occurred: " + ex.StackTrace +
-                           " - Message: " + ex.Message + "\n\n");
+                sr.WriteLine("Controller: " + controller + "\n\n" + "Method: " + method + "\n\n" + "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "\n\n" + "Message: " + ex.Message + "\n\n");
                 sr.Flush();
             }
             catch (Exception _ex)

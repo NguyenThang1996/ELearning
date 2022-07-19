@@ -6,6 +6,8 @@ using Prism.Ioc;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+using System;
+using ELearning.Helpers;
 
 namespace ELearning
 {
@@ -39,9 +41,17 @@ namespace ELearning
         /// </Modified>
         protected override async void OnInitialized()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            await NavigationService.NavigateAsync("LoginPage");
+                await NavigationService.NavigateAsync("LoginPage");
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "ViewPageAppViewModel", "OnInitialized");
+            }
+
         }
         #endregion
 
@@ -54,19 +64,27 @@ namespace ELearning
         /// </Modified>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
-            containerRegistry.RegisterSingleton<IHttpService, HttpService>();
-            containerRegistry.Register<ILoginService, UserService>();
-            containerRegistry.Register<IStaffService, StaffService>();
-            containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<ViewPage, ViewPageViewModel>();
-            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<AddEditPage, AddEditPageViewModel>();
-            containerRegistry.RegisterForNavigation<ListPage, ListPageViewModel>();
-            containerRegistry.RegisterForNavigation<NotificationPage, NotificationPageViewModel>();
-            containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            try
+            {
+                containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+                containerRegistry.RegisterSingleton<IHttpService, HttpService>();
+                containerRegistry.Register<ILoginService, UserService>();
+                containerRegistry.Register<IStaffService, StaffService>();
+                containerRegistry.RegisterForNavigation<NavigationPage>();
+                containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+                containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+                containerRegistry.RegisterForNavigation<ViewPage, ViewPageViewModel>();
+                containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+                containerRegistry.RegisterForNavigation<AddEditPage, AddEditPageViewModel>();
+                containerRegistry.RegisterForNavigation<ListPage, ListPageViewModel>();
+                containerRegistry.RegisterForNavigation<NotificationPage, NotificationPageViewModel>();
+                containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "ViewPageAppViewModel", "RegisterTypes");
+            }
+          
         }
         #endregion
     }

@@ -35,6 +35,7 @@ namespace ELearningAPI.Infrastructure.Configs
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(Configuration.GetConnectionString("WebApiDatabase"));
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
         public DbSet<StaffEntity> Staffs { get; set; }

@@ -185,7 +185,7 @@ namespace ELearningAPI.Presentation.Controllers
                         response.Status = false;
                         response.Message = "Email '" + model.Email + "' đã được sử dụng";
                     }
-                    if (_response == "false")
+                    else if (_response == "false")
                     {
                         response.Status = false;
                         response.Message = "Thêm mới nhân viên thất bại";
@@ -233,7 +233,7 @@ namespace ELearningAPI.Presentation.Controllers
                         response.Status = false;
                         response.Message = "Email '" + model.Email + "' đã được sử dụng";
                     }
-                    if (_response == "false")
+                    else if (_response == "false")
                     {
                         response.Status = false;
                         response.Message = "Sửa nhân viên thất bại";

@@ -1,7 +1,7 @@
-﻿using ELearning.Models;
+﻿using ELearning.Helpers;
+using ELearning.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ELearning.Services
@@ -129,9 +129,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "GetAll");
+                return null;
             }
         }
 
@@ -153,10 +154,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Find");
+                return null;
             }
 
         }
@@ -179,9 +180,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Insert");
+                return null;
             }
 
         }
@@ -204,10 +206,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Update");
+                return null;
             }
 
         }
@@ -230,10 +232,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "Delete");
+                return null;
             }
 
         }
@@ -256,10 +258,10 @@ namespace ELearning.Services
                     return response;
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "StaffService", "GetAllParts");
+                return null;
             }
 
         }

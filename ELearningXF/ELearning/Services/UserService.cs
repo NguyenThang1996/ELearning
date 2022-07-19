@@ -1,7 +1,6 @@
-﻿using ELearning.Models;
+﻿using ELearning.Helpers;
+using ELearning.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ELearning.Services
@@ -65,11 +64,6 @@ namespace ELearning.Services
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
-        /// </Modified>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         public ValueTask<ResponseModel<UserModel>> CheckLogin(UserLoginModel model)
         {
             try
@@ -79,10 +73,10 @@ namespace ELearning.Services
                     return response;
                 return default;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "UserService", "CheckLogin");
+                return default;
             }
            
         }

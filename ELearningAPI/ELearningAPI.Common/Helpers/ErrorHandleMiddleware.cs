@@ -61,7 +61,7 @@ namespace ELearningAPI.Common.Helpers
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-                ExceptionLog.GetException(ex, "ExceptionLog", "GetException");
+                ExceptionLog.GetException(ex, "ErrorHandlerMiddleware", "Invoke");
                 //await using (StreamWriter sr = File.AppendText("LogException.txt"))
                 //{
 

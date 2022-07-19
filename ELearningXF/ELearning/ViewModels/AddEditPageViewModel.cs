@@ -1,14 +1,9 @@
 ﻿using ELearning.Models;
 using ELearning.Services;
-using ELearning.Views;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using Xamarin.Forms;
 using ELearning.Helpers;
 
 namespace ELearning.ViewModels
@@ -48,8 +43,16 @@ namespace ELearning.ViewModels
         /// </Modified>
         public override void Initialize(INavigationParameters parameters)
         {
-            GetAllParts();
-            GetAllGenders();
+            try
+            {
+                GetAllParts();
+                GetAllGenders();
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "Initialize");
+            }
+          
         }
 
         /// <summary>Nhận các parameter từ trang trước truyền sang</summary>
@@ -60,16 +63,24 @@ namespace ELearning.ViewModels
         /// </Modified>
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            PK_Id = parameters.GetValue<int>("PK_Id");
-            Name = parameters.GetValue<string>("Name");
-            Address = parameters.GetValue<string>("Address");
-            Tel = parameters.GetValue<string>("Tel");
-            Email = parameters.GetValue<string>("Email");
-            Avatar = parameters.GetValue<string>("Avatar");
-            Title = parameters.GetValue<string>("Title");
-            IsUpdate = parameters.GetValue<bool>("IsUpdate");
-            FK_PartId = new PartModel { PK_Id = parameters.GetValue<int>("FK_PartId"), Name = parameters.GetValue<string>("PartName") };
-            Gender = new GenderModel { Id = parameters.GetValue<byte>("Gender"), Name = parameters.GetValue<string>("GenderName") };
+            try
+            {
+                PK_Id = parameters.GetValue<int>("PK_Id");
+                Name = parameters.GetValue<string>("Name");
+                Address = parameters.GetValue<string>("Address");
+                Tel = parameters.GetValue<string>("Tel");
+                Email = parameters.GetValue<string>("Email");
+                Avatar = parameters.GetValue<string>("Avatar");
+                Title = parameters.GetValue<string>("Title");
+                IsUpdate = parameters.GetValue<bool>("IsUpdate");
+                FK_PartId = new PartModel { PK_Id = parameters.GetValue<int>("FK_PartId"), Name = parameters.GetValue<string>("PartName") };
+                Gender = new GenderModel { Id = parameters.GetValue<byte>("Gender"), Name = parameters.GetValue<string>("GenderName") };
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "OnNavigatedTo");
+            }
+
         }
         #endregion
 
@@ -197,7 +208,7 @@ namespace ELearning.ViewModels
                                 UpdatedBy = 1
                             });
                         }
-                        // !IsUpdate thì vào case update
+                        // IsUpdate thì vào case update
                         else
                         {
                             response = await _staffService.Update(new StaffModel
@@ -251,12 +262,10 @@ namespace ELearning.ViewModels
                     HasError = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "Save");
             }
-
         }
 
         /// <summary>Hàm get all phòng ban</summary>
@@ -290,10 +299,9 @@ namespace ELearning.ViewModels
                     ErrorText = "Lấy danh sách phòng ban thất bại";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "GetAllParts");
             }
 
         }
@@ -313,10 +321,9 @@ namespace ELearning.ViewModels
                 new GenderModel(){ Id = 3, Name="Khác"}
             };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "GetAllGenders");
             }
 
         }
@@ -340,10 +347,9 @@ namespace ELearning.ViewModels
                 parameters.Add("IsReload", true);
                 await navigationService.GoBackAsync(parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "AddEditPageViewModel", "Cancel");
             }
 
         }

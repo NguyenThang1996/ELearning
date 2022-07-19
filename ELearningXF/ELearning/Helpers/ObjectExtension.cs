@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ELearning.Helpers;
+using System;
 using System.Linq;
-using System.Text;
 
 namespace ELearning.Extensions
 {
     #region Defnine hàm convert object to string
     /// <summary>
-    ///     Extension covert object to string
+    ///     ObjectExtension
     /// </summary>
     /// <Modified>
     /// Name Date Comments
@@ -15,7 +14,7 @@ namespace ELearning.Extensions
     /// </Modified>
     public static class ObjectExtension
     {
-        /// <summary>Converts to querystring.</summary>
+        /// <summary>Convert object to string</summary>
         /// <param name="obj">The object.</param>
         /// <returns>
         ///   <br />
@@ -26,7 +25,20 @@ namespace ELearning.Extensions
         /// </Modified>
         public static string ToQueryString(this object obj)
         {
-            return string.Join("&", obj.GetType().GetProperties().Where(p => p.GetValue(obj, null) != null).Select(p => $"{Uri.EscapeDataString(p.Name)}={Uri.EscapeDataString(p.GetValue(obj).ToString())}"));
+            try
+            {
+                if (obj != null)
+                {
+                    return string.Join("&", obj.GetType().GetProperties().Where(p => p.GetValue(obj, null) != null).Select(p => $"{Uri.EscapeDataString(p.Name)}={Uri.EscapeDataString(p.GetValue(obj).ToString())}"));
+                }
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "ObjectExtension", "ToQueryString");
+                return null;
+            }
+         
         }
     }
     #endregion

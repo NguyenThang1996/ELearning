@@ -1,16 +1,10 @@
 ﻿using ELearning.Helpers;
 using ELearning.Models;
 using ELearning.Services;
-using ELearning.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace ELearning.ViewModels
@@ -60,10 +54,9 @@ namespace ELearning.ViewModels
                 Password = await SecureStorage.GetAsync("Password");
                 Remember = Convert.ToBoolean(await SecureStorage.GetAsync("Remember"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "LoginPageViewModel", "Initialize");
             }
 
         }
@@ -185,10 +178,9 @@ namespace ELearning.ViewModels
                     HasError = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ExceptionLog.GetException(ex, "LoginPageViewModel", "Login");
             }
 
         }

@@ -1,11 +1,7 @@
-﻿using ELearning.Views;
+﻿using ELearning.Helpers;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xamarin.Essentials;
 
 namespace ELearning.ViewModels
 {
@@ -51,13 +47,12 @@ namespace ELearning.ViewModels
         {
             try
             {
-
                 await navigationService.NavigateAsync("/LoginPage");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                ExceptionLog.GetException(ex, "ProfilePageViewModel", "Logout");
             }
         }
         #endregion

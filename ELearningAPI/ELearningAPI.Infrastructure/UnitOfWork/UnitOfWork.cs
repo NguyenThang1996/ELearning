@@ -1,7 +1,5 @@
-﻿using System;
+﻿using ELearningAPI.Common.Helpers;
 using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
 using ELearningAPI.Infrastructure.Configs;
 using ELearningAPI.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -102,11 +100,6 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
-        /// </Modified>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         public void BeginTransaction()
         {
             try
@@ -119,15 +112,11 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "UnitOfWork", "BeginTransaction");
             }
         }
 
         /// <summary>Commits the transaction.</summary>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
@@ -143,17 +132,13 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
                 _transaction = null;
             }
             catch (Exception ex)
-            { 
-                throw;
+            {
+                ExceptionLog.GetException(ex, "UnitOfWork", "CommitTransaction");
             }
 
         }
 
         /// <summary>Rollbacks the transaction.</summary>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
@@ -169,7 +154,7 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "UnitOfWork", "RollbackTransaction");
             }
 
         }
@@ -182,10 +167,6 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
         /// </Modified>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         public IUserRepository UserRepository()
         {
             try
@@ -194,7 +175,8 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "UnitOfWork", "UserRepository");
+                return null;
             }
         }
 
@@ -202,10 +184,6 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
         /// <returns>
         ///   <br />
         /// </returns>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
@@ -218,7 +196,8 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "UnitOfWork", "StaffRepository");
+                return null;
             }
         }
 
@@ -226,10 +205,6 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
         /// <returns>
         ///   <br />
         /// </returns>
-        /// <Modified>
-        /// Name Date Comments
-        /// thangnh3 14/07/2022 created
-        /// </Modified>
         /// <Modified>
         /// Name Date Comments
         /// thangnh3 14/07/2022 created
@@ -242,7 +217,8 @@ namespace ELearningAPI.Infrastructure.UnitOfWork
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionLog.GetException(ex, "UnitOfWork", "PartRepository");
+                return null;
             }
         }
     }

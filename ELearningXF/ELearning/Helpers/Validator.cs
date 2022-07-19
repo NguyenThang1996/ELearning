@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ELearning.Helpers
@@ -27,8 +25,17 @@ namespace ELearning.Helpers
         /// </Modified>
         public static bool IsValidPhone(string number)
         {
-            if (number != null) return Regex.IsMatch(number, motif);
-            else return false;
+            try
+            {
+                if (number != null) return Regex.IsMatch(number, motif);
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "Validator", "IsValidPhone");
+                return false;
+            }
+         
         }
 
         /// <summary>Check valid email</summary>
@@ -41,19 +48,19 @@ namespace ELearning.Helpers
         /// </Modified>
         public static bool IsValidEmail(string email)
         {
-            var trimmedEmail = email.Trim();
-
-            if (trimmedEmail.EndsWith("."))
-            {
-                return false;
-            }
             try
             {
+                var trimmedEmail = email.Trim();
+                if (trimmedEmail.EndsWith("."))
+                {
+                    return false;
+                }
                 var addr = new System.Net.Mail.MailAddress(email);
                 return addr.Address == trimmedEmail;
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionLog.GetException(ex, "Validator", "IsValidEmail");
                 return false;
             }
         }
@@ -68,13 +75,22 @@ namespace ELearning.Helpers
         /// </Modified>
         public static bool IsValidSpecialCharacter(string input)
         {
-            string specialChar = @"\|!#$%&/()=?»«£§€{}-;'<>_,";
-            foreach (var item in specialChar)
+            try
             {
-                if (input.Contains(item)) return true;
-            }
+                string specialChar = @"\|!#$%&/()=?»«£§€{}-;'<>_,";
+                foreach (var item in specialChar)
+                {
+                    if (input.Contains(item)) return true;
+                }
 
-            return false;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetException(ex, "Validator", "IsValidSpecialCharacter");
+                return false;
+            }
+            
         }
 
         /// <summary>Check null tên, địa chỉ, sdt, email</summary>
@@ -91,24 +107,32 @@ namespace ELearning.Helpers
         /// </Modified>
         public static string IsValidStringNullOrEmty(string name, string address, string tel, string email)
         {
-            string str = string.Empty;
-            if (String.IsNullOrEmpty(name))
+            try
             {
-                str += "Tên nhân viên ";
+                string str = string.Empty;
+                if (String.IsNullOrEmpty(name))
+                {
+                    str += "Tên nhân viên ";
+                }
+                if (String.IsNullOrEmpty(address))
+                {
+                    str += "Địa chỉ ";
+                }
+                if (String.IsNullOrEmpty(tel))
+                {
+                    str += "Số điện thoại ";
+                }
+                if (String.IsNullOrEmpty(email))
+                {
+                    str += "Email ";
+                }
+                return str += "không được để trống";
             }
-            if (String.IsNullOrEmpty(address))
+            catch (Exception ex)
             {
-                str += "Địa chỉ ";
-            }
-            if (String.IsNullOrEmpty(tel))
-            {
-                str += "Số điện thoại ";
-            }
-            if (String.IsNullOrEmpty(email))
-            {
-                str += "Email ";
-            }
-            return str += "không được để trống";
+                ExceptionLog.GetException(ex, "Validator", "IsValidStringNullOrEmty");
+                return string.Empty;
+            }           
         }
         #endregion
     }
